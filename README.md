@@ -1,32 +1,32 @@
-# Freebox-exporter Telegraf/InfluxDB
+# Monitoring de votre Freebox avec Telegraf & InfluxDB
 Also available on Docker-Hub (https://hub.docker.com/r/uzurka/freebox-telegraf)  
 This work is based on Telegraf Docker image (https://hub.docker.com/_/telegraf),  
 And on Bruno78's tuto about setting this up (https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/)
 
-My goal is to be configured only with env variables.  
-The entrypoint checks for the presence of the ``/usr/local/py/.credentials`` file. If the file is not present, it will automatically start the registration of the app on the freebox.  
-In case of this registration fails, run ``docker exec -it container_name rm /usr/local/py/.credentials`` and restart the container to rerun the registration
+L'objectif est d'être configuré uniquement avec des variables d'environnement.  
+Le point d'entrée vérifie la présence du fichier ``/usr/local/py/.credentials``. Si le fichier n'est pas présent, il lancera automatiquement l'enregistrement de l'application sur la freebox.  
+En cas d'échec de cette inscription, run ``docker exec -it container_name rm /usr/local/py/.credentials`` et redémarrez le conteneur pour relancer l'enregistrement
 
-#### Here's an exemple of what you can get using this container into grafana : 
+#### Ici, un exemple de ce que vous pouvez obtenir avec grafana : 
 ![grafana](https://download.uzurka.fr/graf.png)
 
-## Available Architectures
+## Architectures disponibles
 - amd64
 - arm64 (aarch64)
 - armv7 (arm)
 
-## Common usage
-Download docker-compose.yml file and edit it with your informations, then run ``docker-compose up -d``
+## Utilisation courante
+Télécharger le fichier docker-compose.yml et faire le modification avec vos informations, puis run ``docker-compose up -d``
 
 ## Configuration
 
-### Exposed Ports
-
+### Ports exposées
 - 8125 StatsD
 - 8092 UDP
 - 8094 TCP  
 
-### Environment variables
+
+### Variable d'environement
 | Environment variable            | Exemple                                 | Usage                                                                                                                                                                                 |
 |---------------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | TZ                              | CET                                     | Set your TimeZone into the container                                                                                                                                                  |
@@ -38,9 +38,10 @@ Download docker-compose.yml file and edit it with your informations, then run ``
 | ARGS                            | SPHDIWX4                                | See below                                                                                                                                                                             |
 | TELEGRAF_AGENT_INTERVAL                            | 10s                                |defaults to 10s|
 | TELEGRAF_SCRIPT_TIMEOUT                            | 5s                                |defaults to 5s|
-### Arguments for freebox-exporter python script
-This env is quite tricky, as i didn't found another way to get it variabilised, this is just the arguments used for executing the script into telegraf configuration.  
-Here's the script.py -h, which tells you which arg is used for :  
+
+### Arguments pour docker compose (ARGS=xxxxxxxx)
+Ce sont juste les arguments utilisés pour exécuter le script python dans la configuration de Telegraf.
+
 | Argument | Description                                   |
 |----------|-----------------------------------------------|
 | S        | Get and show switch status                    |
@@ -55,7 +56,9 @@ Here's the script.py -h, which tells you which arg is used for :
 | Z        | Get and show dynamic dhcp                     |
 | 4        | Get and show 4G/lte xdsl aggregation counters |
 
-The ARGS env come in the telegraf.conf rigt after the command ``/usr/local/py/freebox-monit.py -``, just select metrics you want and add choosen letters to the ARGS var
+L'environnement ARGS est présent dans le fichier telegraf.conf juste après la commande ``/usr/local/py/freebox-monit.py -``.
+  Sélectionnez simplement les métriques souhaitées et ajoutez les lettres choisies à la variable ARGS dans docker compose
+
 ## Sources
 - https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/
 - https://hub.docker.com/r/repobazireinformatique/freebox-telegraf
