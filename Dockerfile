@@ -1,3 +1,7 @@
+##------- Choisir la version et supprimer celle non utilisée -------##
+
+##------- telegraf:1.27.1 testé OK -------##
+
 FROM telegraf:1.27.1
 
 # Install required packages
@@ -22,7 +26,7 @@ ADD telegraf.conf /etc/telegraf/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-
+##------- telegraf:1.29.2 non testé -------##
 
 FROM telegraf:1.29.2
 
