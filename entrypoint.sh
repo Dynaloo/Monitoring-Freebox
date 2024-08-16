@@ -5,13 +5,13 @@ if [ "${1:0:1}" = '-' ]; then
     set -- telegraf "$@"
 fi
 
-# Check if the /usr/local/py/.credentials file exists
+# Vérifie si le fichier /usr/local/py/.credentials existe
 if [ -f "/usr/local/py/.credentials" ]; then
-    # If the file exists, continue with the execution
-    echo "The freebox is registered, continuing the execution."
+    # Si le fichier existe, continuez l'exécution
+    echo "La freebox est enregistrée, on continue l'exécution."
 else
-    # If the file doesn't exist, execute the command
-    echo "The Freebox isn't registered, registering. Please allow acces from your freebox's panel."
+    # Si le fichier n'existe pas, exécutez la commande
+    echo "La Freebox n'est pas enregistrée, enregistrement en cours. Veuillez autoriser l'accès depuis votre panneau Freebox."
     /usr/local/py/freebox-monit.py -r
 fi
 
@@ -19,7 +19,7 @@ if [ $EUID -ne 0 ]; then
     exec "$@"
 else
 
-    # Allow telegraf to send ICMP packets and bind to privileged ports
+    # Autoriser Telegraf à envoyer des paquets ICMP et à se lier à des ports privilégiés
     setcap cap_net_raw,cap_net_bind_service+ep /usr/bin/telegraf || echo "Failed to set additional capabilities on /usr/bin/telegraf"
 
     exec setpriv --reuid telegraf --init-groups telegraf "$@"
