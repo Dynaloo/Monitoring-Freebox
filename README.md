@@ -14,8 +14,7 @@ Si le fichier n'est pas présent, il lancera automatiquement l'enregistrement de
 En cas d'échec de cette inscription, faire la commande suivante ``docker exec -it container_name rm /usr/local/py/.credentials`` et redémarrez le conteneur pour relancer l'enregistrement
 
 #### Ici, un exemple de ce que vous pouvez obtenir avec grafana : 
-![Exemple d'une vue sur Grafana](https://github.com/Dynaloo/Monitoring-Freebox/edit/main/Exemple Grafana.png)
- [Grafana](https://github.com/dynaloo/monitoring-freebox/exemple)
+![Grafana](https://github.com/dynaloo/monitoring-freebox/exemple-grafana.png)
 
 ## Architectures disponibles
 - amd64
