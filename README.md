@@ -15,6 +15,7 @@ En cas d'échec de cette inscription, faire la commande suivante ``docker exec -
 
 #### Ici, un exemple de ce que vous pouvez obtenir avec grafana : 
 ![Exemple d'une vue sur Grafana](https://github.com/Dynaloo/Monitoring-Freebox/edit/main/Exemple Grafana.png)
+ [Grafana](https://github.com/dynaloo/monitoring-freebox/exemple)
 
 ## Architectures disponibles
 - amd64
