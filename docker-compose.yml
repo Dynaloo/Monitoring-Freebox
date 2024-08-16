@@ -1,0 +1,29 @@
+version: "3"
+services:
+    influxdb:
+        image: influxdb:1.8
+        hostname: influxdb_test
+        restart: always
+        environment:
+            INFLUX_DB: fbx
+            INFLUXDB_USER: fbx
+            INFLUXDB_PASSWORD: fbx
+
+    fbx_telegraf:
+        image: uzurka/freebox-telegraf
+        container_name: container_name
+        hostname: hostname
+        environment:
+            - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:/usr/local:/usr/src
+            - TZ=CET
+            - INFLUXDB_URL=http://influxdb_container_name:port
+            - INFLUXDB_DATABASE=fbx
+            - INFLUXDB_SKIP_DATABASE_CREATION=false
+            - INFLUXDB_USERNAME=fbx
+            - INFLUXDB_PASSWORD=fbx
+            - ARGS=SPHDIWX4
+        ports:
+            - 9125:8125/udp
+            - 9092:8092/udp
+            - 9094:8094
+        restart: unless-stopped
