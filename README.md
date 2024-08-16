@@ -64,7 +64,7 @@ Ce sont juste les arguments utilisés pour exécuter le script python dans la co
 
 L'environnement ARGS est présent dans le fichier telegraf.conf juste après la commande ``/usr/local/py/freebox-monit.py -``.
 
-  Sélectionnez simplement les métriques souhaitées et ajoutez les lettres choisies à la variable ARGS dans docker compose
+  Sélectionnez simplement les métriques souhaitées et ajoutez les lettres choisies à la variable ARGS= dans docker compose
 
 ## Sources
 - https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/
