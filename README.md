@@ -21,8 +21,8 @@ En cas d'échec de cette inscription, faire la commande suivante ``docker exec -
 - arm64 (aarch64)
 - armv7 (arm)
 
-## Utilisation courante
-Télécharger le fichier docker-compose.yml et faire le modification avec vos informations, puis run ``docker-compose up -d``
+## Installation sur container docker
+Télécharger le fichier docker-compose.yml et faire les modifications du fichier avec vos informations, puis : run ``docker-compose up -d``
 
 ## Configuration
 
