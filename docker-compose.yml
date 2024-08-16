@@ -1,29 +1,48 @@
-version: "3"
+version: "3.8"
 services:
-    influxdb:
-        image: influxdb:1.8
-        hostname: influxdb_test
-        restart: always
-        environment:
-            INFLUX_DB: fbx
-            INFLUXDB_USER: fbx
-            INFLUXDB_PASSWORD: fbx
+  influxdb:
+    image: influxdb:1.8.10
+    container_name: influxdb-v1.8.x
+    hostname: influxdb
+    restart: unless-stopped
+    ports:
+      - '8086:8086'  # port pour accéder à l'interface web Influxdb_v1.8.x
+    volumes:
+      - /home/monitoring/influxdb/data:/var/lib/influxdb  # volume pour stocker la base de données InfluxDB
+      - /home/monitoring/influxdb/config:/etc/influxdb
+    environment:
+      INFLUX_DB: le nom de votre base de donnée
+      INFLUXDB_USER: le nom de user de la base de donnée
+      INFLUXDB_PASSWORD: le password de la base de donnée 
+## ---------------------------------------------------------------------------------------------------------------
+  fbx_telegraf:
+    image: uzurka/freebox-telegraf
+    container_name: freebox-telegraf
+    hostname: telegraf
+    restart: unless-stopped
+    ports:
+      - 9125:8125/udp
+      - 9092:8092/udp
+      - 9094:8094
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:/usr/local:/usr/src
+      - TZ=CET
+      - TELEGRAF_AGENT_INTERVAL=10s
+      - TELEGRAF_SCRIPT_TIMEOUT=5s
+      - TELEGRAF_DATA_FORMAT=influx
 
-    fbx_telegraf:
-        image: uzurka/freebox-telegraf
-        container_name: container_name
-        hostname: hostname
-        environment:
-            - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:/usr/local:/usr/src
-            - TZ=CET
-            - INFLUXDB_URL=http://influxdb_container_name:port
-            - INFLUXDB_DATABASE=fbx
-            - INFLUXDB_SKIP_DATABASE_CREATION=false
-            - INFLUXDB_USERNAME=fbx
-            - INFLUXDB_PASSWORD=fbx
-            - ARGS=SPHDIWX4
-        ports:
-            - 9125:8125/udp
-            - 9092:8092/udp
-            - 9094:8094
-        restart: unless-stopped
+      - INFLUXDB_URL=http://xxx.xxx.xx.xx:8086  # remplacer (x) par l'IP de votre base de donnée
+      - INFLUXDB_DATABASE=le nom de votre base de donnée
+      - INFLUXDB_SKIP_DATABASE_CREATION=false
+      - INFLUXDB_USER=le nom de user de la base de donnée
+      - INFLUXDB_PASSWORD=le password de la base de donnée
+
+      - ARGS=SPHDLWIXYZ
+
+#      - INFLUXDB2_URL=http://xxx.xxx.xx.xx:8086  # remplacer (x) par l'IP de votre base de donnée
+#      - INFLUXDB2_TOKEN=votre token
+#      - INFLUXDB2_SKIP_DATABASE_CREATION=true
+#      - INFLUXDB2_ORG=votre organisation
+#      - INFLUXDB2_BUCKET=votre bucket
+
+## ---------------------------------------------------------------------------------------------------------------
