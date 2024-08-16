@@ -46,7 +46,7 @@ Télécharger le fichier docker-compose.yml et faire le modification avec vos in
 | TELEGRAF_SCRIPT_TIMEOUT                            | 5s                                |defaults to 5s|
 
 ### Arguments pour docker compose (ARGS=xxxxxxxx)
-Ce sont juste les arguments utilisés pour exécuter le script python dans la configuration de Telegraf.
+Ci-dessous les arguments utilisés pour exécuter le script python dans la configuration de Telegraf.
 
 | Argument | Description                                   |
 |----------|-----------------------------------------------|
