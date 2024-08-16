@@ -1,10 +1,10 @@
 # Monitoring de votre Freebox avec Telegraf & InfluxDB
-Également disponible sur Docker-Hub (https://hub.docker.com/r/uzurka/freebox-telegraf) 
-Ce travail est basé sur l'image Docker de Telegraf (https://hub.docker.com/_/telegraf) 
-Et le tuto de Bruno78, pour une installation sur NAS Synology (https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/) 
+Également disponible sur Docker-Hub (https://hub.docker.com/r/uzurka/freebox-telegraf)
+Ce travail est basé sur l'image Docker de Telegraf (https://hub.docker.com/_/telegraf)
+Et le tuto de Bruno78, pour une installation sur NAS Synology (https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/)
 
-L'objectif est de simplifier la configuration avec des variables d'environnement dans docker compose.  
-Le point d'entrée vérifie la présence du fichier ``/usr/local/py/.credentials``. Si le fichier n'est pas présent, il lancera automatiquement l'enregistrement de l'application sur la freebox.  
+L'objectif est de simplifier la configuration avec des variables d'environnement dans docker compose.
+Le point d'entrée vérifie la présence du fichier ``/usr/local/py/.credentials``. Si le fichier n'est pas présent, il lancera automatiquement l'enregistrement de l'application sur la freebox.
 En cas d'échec de cette inscription, faire la commande suivante ``docker exec -it container_name rm /usr/local/py/.credentials`` et redémarrez le conteneur pour relancer l'enregistrement
 
 #### Ici, un exemple de ce que vous pouvez obtenir avec grafana : 
