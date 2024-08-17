@@ -1,4 +1,4 @@
-version: "3.8"
+#version: "3.8"  # depreciated #
 services:
   influxdb:
     image: influxdb:1.8.10
