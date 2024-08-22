@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: freebox action step
+        id: freefox
+        uses: actions/monitoring-freebox-action@v2
+        with:
+          who-to-greet: 'eric'
+      # Use the output from the `freebox` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.freebox.outputs.time }}"
