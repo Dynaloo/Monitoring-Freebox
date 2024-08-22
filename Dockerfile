@@ -2,7 +2,10 @@
 
 ##------- telegraf:1.27.1 testé OK -------##
 
-FROM telegraf:1.27.1
+# Add a new comment to trigger build.
+# basic nginx dockerfile starting with Ubuntu 20.04
+FROM ubuntu:20.04
+#FROM telegraf:1.27.1
 
 # Install required packages
 RUN apt-get update \
