@@ -1,18 +1,17 @@
-name: Docker Image CI
+kind: pipeline
+name: default
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+steps:
+- name: docker
+  image: thegeeklab/drone-docker-buildx:23
+  privileged: true
+  settings:
+    username:
+    password: 
+      from_secret: docker_password
+    repo: dynaloo/monitoring-freebox
+    tags: latest
+    platforms: 
+      - linux/amd64
+      - linux/arm64
+      - linux/arm/v7
