@@ -2,12 +2,12 @@ on: [push]
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
+    runs-on: debian-latest
+    name: test
     steps:
       - name: freebox action step
         id: freefox
-        uses: actions/monitoring-freebox-action@v2
+        uses: actions/dynallo/monitoring-freebox-action@test
         with:
           who-to-greet: 'eric'
       # Use the output from the `freebox` step
