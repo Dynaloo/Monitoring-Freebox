@@ -81,19 +81,19 @@ services:
       - TELEGRAF_SCRIPT_TIMEOUT=5s
       - TELEGRAF_DATA_FORMAT=influx
 
-      - INFLUXDB_URL=http://192.168.1.174:8086  #*
-      - INFLUXDB_DATABASE=freebox  #*
+      - INFLUXDB_URL=http://votre_IP_docker:8086  #*
+      - INFLUXDB_DATABASE=nom_de_votre_bdd  #*
       - INFLUXDB_SKIP_DATABASE_CREATION=false
-      - INFLUXDB_USERNAME=eric  #*
-      - INFLUXDB_PASSWORD=lancia  #*
+      - INFLUXDB_USER=votre_user_bdd  #*
+      - INFLUXDB_PASSWORD=votre_password_bdd  #*
 
       - ARGS=SPHDLWIXYZ
 
-#      - INFLUXDB2_URL=http://192.168.1.174:8086  # ou :8087 suivant la config choisie  #*
-#      - INFLUXDB2_TOKEN=indiquer le token influxdb2  #*
+#      - INFLUXDB2_URL=http://votre_IP_docker:8086  # ou :8087 si les 2 versions (v1 et v2) d'influxdb sont installées  #*
+#      - INFLUXDB2_TOKEN=votre_token_influxdb2  #*
 #      - INFLUXDB2_SKIP_DATABASE_CREATION=true
-#      - INFLUXDB2_ORG=homelabs  #*
-#      - INFLUXDB2_BUCKET=freebox  #*
+#      - INFLUXDB2_ORG=votre_organisation  #*
+#      - INFLUXDB2_BUCKET=votre_bucket  #*
 
 networks:
   monitoring_network:
