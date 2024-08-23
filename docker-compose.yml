@@ -1,4 +1,40 @@
-#version: "3.8"  # depreciated #
+# Installation du monitoring de la freebox sous container Docker
+  # Pré-requis : avoir docker & portainer operationnel sous Proxmox LXC
+    # Avant de lancer la stack, créer les volumes & network ci-dessous avec portainer #
+      # docker volume create influxdb
+      # docker volume create influxdb-v2
+      # docker volume create grafana
+      # docker network create monitoring_network
+    # deployer la stack apres avoir completer les infos d'environnement  #*
+
+    # autre solution, créer des stacks separées pour Influxdb v1 et/ou influxdb v2, puis pour grafana, puis pour telegraf sans oublier de completer les infos d'environnement  #*
+
+## Influxdb Version 2  ----------------------------------------------
+#version: "3.8" # depreciated #
+services:
+  influxdb:
+    image: influxdb:2.7.9
+    container_name: influxdb-v2.7.x
+    hostname: influxdb
+    restart: unless-stopped
+    ports:
+      - '8086:8086'  # port par defaut pour accéder à l'interface web Influxdb_v2
+#      - '8087:8086'  # port custom, remplace ci-dessus si influxdb-v1 tourne en parallele sur docker
+    networks:
+      - monitoring_network
+    volumes:
+      - influxdb-v2:/var/lib/influxdb2  # volume pour stocker la base de données InfluxDB
+      - /etc/influxdb2:/etc/influxdb2
+networks:
+  monitoring_network:
+    external: true
+volumes:
+  influxdb-v2:
+    external: true
+
+
+## Influxdb Version 1  ----------------------------------------------
+#version: "3.8" # depreciated #
 services:
   influxdb:
     image: influxdb:1.8.10
@@ -6,15 +42,27 @@ services:
     hostname: influxdb
     restart: unless-stopped
     ports:
-      - '8086:8086'  # port pour accéder à l'interface web Influxdb_v1.8.x
+      - '8086:8086'  # port par defaut pour accéder à l'interface web Influxdb_v1.8.x
+    networks:
+      - monitoring_network
     volumes:
-      - /home/monitoring/influxdb/data:/var/lib/influxdb  # volume pour stocker la base de données InfluxDB
-      - /home/monitoring/influxdb/config:/etc/influxdb
-    environment:
-      INFLUX_DB: le nom de votre base de donnée
-      INFLUXDB_USER: le nom de user de la base de donnée
-      INFLUXDB_PASSWORD: le password de la base de donnée 
-## ---------------------------------------------------------------------------------------------------------------
+      - influxdb:/var/lib/influxdb  # volume pour stocker la base de données InfluxDB
+      - /etc/influxdb:/etc/influxdb
+networks:
+  monitoring_network:
+    external: true
+volumes:
+  influxdb:
+    external: true     
+
+
+## Telegraf  ---------------------------------------------------------
+  # pour info, emplacement du fichier telegraf.conf : /etc/telegraf/
+  # pour info, emplacement du fichier freebox-monit.py : /usr/local/py/
+  ## donner l'autorisation sur la freebox apres le lancement de la stack 
+
+#version: "3.8" # depreciated #
+services:
   fbx_telegraf:
     image: dynaloo13/freebox-telegraf:v.1.0
     container_name: freebox-telegraf
@@ -24,25 +72,51 @@ services:
       - 9125:8125/udp
       - 9092:8092/udp
       - 9094:8094
+    networks:
+      - monitoring_network
     environment:
       - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:/usr/local:/usr/src
-      - TZ=CET
+      - TZ=europe/paris
       - TELEGRAF_AGENT_INTERVAL=10s
       - TELEGRAF_SCRIPT_TIMEOUT=5s
       - TELEGRAF_DATA_FORMAT=influx
 
-      - INFLUXDB_URL=http://xxx.xxx.xx.xx:8086  # remplacer (x) par l'IP de votre base de donnée
-      - INFLUXDB_DATABASE=le nom de votre base de donnée
+      - INFLUXDB_URL=http://192.168.1.174:8086  #*
+      - INFLUXDB_DATABASE=freebox  #*
       - INFLUXDB_SKIP_DATABASE_CREATION=false
-      - INFLUXDB_USER=le nom de user de la base de donnée
-      - INFLUXDB_PASSWORD=le password de la base de donnée
+      - INFLUXDB_USERNAME=eric  #*
+      - INFLUXDB_PASSWORD=lancia  #*
 
       - ARGS=SPHDLWIXYZ
 
-#      - INFLUXDB2_URL=http://xxx.xxx.xx.xx:8086  # remplacer (x) par l'IP de votre base de donnée
-#      - INFLUXDB2_TOKEN=votre token
+#      - INFLUXDB2_URL=http://192.168.1.174:8086  # ou :8087 suivant la config choisie  #*
+#      - INFLUXDB2_TOKEN=indiquer le token influxdb2  #*
 #      - INFLUXDB2_SKIP_DATABASE_CREATION=true
-#      - INFLUXDB2_ORG=votre organisation
-#      - INFLUXDB2_BUCKET=votre bucket
+#      - INFLUXDB2_ORG=homelabs  #*
+#      - INFLUXDB2_BUCKET=freebox  #*
 
-## ---------------------------------------------------------------------------------------------------------------
+networks:
+  monitoring_network:
+    external: true
+
+
+## Grafana  --------------------------------------------------------------
+#version: "3.8" # depreciated #
+services:
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    hostname: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    networks:
+      - monitoring_network
+    volumes:
+      - grafana:/var/lib/grafana  # volume pour stocker la base de données Grafana
+networks:
+  monitoring_network:
+    external: true
+volumes:
+  grafana:
+    external: true
