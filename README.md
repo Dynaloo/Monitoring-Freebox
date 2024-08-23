@@ -1,17 +1,14 @@
-# Monitoring de votre Freebox avec Telegraf & InfluxDB
-Également disponible sur Docker-Hub (https://hub.docker.com/r/uzurka/freebox-telegraf)
+# Monitoring de votre Freebox avec Telegraf & InfluxDB & Grafana
+Cette image est basé sur l'image Docker de telegraf (https://hub.docker.com/_/telegraf),
+et sur le travail de "UZURKA" disponible sur Docker-Hub (https://hub.docker.com/r/uzurka/freebox-telegraf)
 
-Ce travail est basé sur l'image Docker de Telegraf (https://hub.docker.com/_/telegraf)
+L'objectif étant de simplifier la configuration avec des variables d'environnement dans docker compose.
 
-Et le tuto de Bruno78, pour une installation sur NAS Synology (https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/)
-
-L'objectif est de simplifier la configuration avec des variables d'environnement dans docker compose.
-
-Le point d'entrée vérifie la présence du fichier ``/usr/local/py/.credentials``.
+> Le point d'entrée vérifie la présence du fichier ``/usr/local/py/.credentials``.
 
 Si le fichier n'est pas présent, il lancera automatiquement l'enregistrement de l'application sur la freebox.
 
-En cas d'échec de cette inscription, faire la commande suivante ``docker exec -it container_name rm /usr/local/py/.credentials`` et redémarrez le conteneur pour relancer l'enregistrement
+> En cas d'échec de cette inscription, faire la commande suivante ``docker exec -it container_name rm /usr/local/py/.credentials`` et redémarrez le conteneur pour relancer l'enregistrement
 
 #### Ici, un exemple de ce que vous pouvez obtenir avec grafana : 
 ![Grafana](https://github.com/dynaloo/monitoring-freebox/blob/main/Exemple-Grafana.png)
@@ -27,7 +24,7 @@ Télécharger le fichier docker-compose.yml et faire les modifications du fichie
 ## Configuration
 
 ### Ports exposées
-- 8125 StatsD
+- 8125 UDP
 - 8092 UDP
 - 8094 TCP  
 
@@ -62,10 +59,6 @@ Ci-dessous les arguments utilisés pour exécuter le script python dans la confi
 | Z        | Get and show dynamic dhcp                     |
 | 4        | Get and show 4G/lte xdsl aggregation counters |
 
-L'environnement ARGS est présent dans le fichier telegraf.conf juste après la commande ``/usr/local/py/freebox-monit.py -``.
+Sélectionnez simplement les métriques souhaitées et ajoutez les arguments choisis à la variable ARGS=xxxxxx dans docker compose
 
-  Sélectionnez simplement les métriques souhaitées et ajoutez les lettres choisies à la variable ARGS= dans docker compose
-
-## Sources
-- https://www.nas-forum.com/forum/topic/66394-tuto-monitorer-sa-freebox-revolution/
-- https://hub.docker.com/r/repobazireinformatique/freebox-telegraf
+  Pour info, la variable d'environnement ARGS est présente dans le fichier telegraf.conf : "/usr/local/py/freebox-monit.py -${ARGS}"
