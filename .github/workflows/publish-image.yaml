@@ -1,4 +1,4 @@
-name: Publish image to docker hub
+name: Publish freebox image
 
 on:
   [workflow_dispatch]
