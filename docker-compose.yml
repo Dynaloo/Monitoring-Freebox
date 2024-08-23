@@ -16,7 +16,7 @@ services:
       INFLUXDB_PASSWORD: le password de la base de donnée 
 ## ---------------------------------------------------------------------------------------------------------------
   fbx_telegraf:
-    image: uzurka/freebox-telegraf
+    image: dynaloo13/freebox-telegraf:v.1.0
     container_name: freebox-telegraf
     hostname: telegraf
     restart: unless-stopped
