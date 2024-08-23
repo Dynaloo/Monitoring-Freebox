@@ -15,4 +15,4 @@ jobs:
       - name: publish
         run: |
           docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
-          docker push dynaloo/monitoring-freebox:latest
+          docker push dynaloo13/monitoring-freebox:latest
