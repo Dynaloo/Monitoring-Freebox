@@ -2,7 +2,7 @@
 
 ##------- telegraf:1.27.1 testé OK -------##
 
-FROM telegraf:1.27.1
+FROM telegraf:1.27.1  # version du [2023-06-21]
 
 # Install required packages
 RUN apt-get update \
@@ -28,7 +28,8 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 ##------- telegraf:1.29.2 non testé -------##
 
-#FROM telegraf:1.29.2
+#FROM telegraf:1.29.2  # version du [2024-01-08]
+#FROM telegraf:1.31.2  # version du [2024-07-22]
 
 # Install required packages
 #RUN apt-get update \""
