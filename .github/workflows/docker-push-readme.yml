@@ -1,0 +1,28 @@
+name: Docker Push README
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+
+jobs:
+  build:
+    name: Docker Push README
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: push README to Dockerhub
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: dynaloo13
+          DOCKER_PASS: ${{ secrets.DOCKERHUB }}
+        with:
+          destination_container_repo: dynaloo13/freebox-telegraf
+          provider: dockerhub
+          short_description: 'Monitoring Freebox'
+          readme_file: 'README.md'
