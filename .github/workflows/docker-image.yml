@@ -23,19 +23,12 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v4
     
+    - name: Build Docker freebox
+      run: docker build . -t dynaloo13/freebox-telegraf:v1.0.0
     - name: publish docker hub
-        run: |
-          docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
-
-    - name: Build Docker image
-        run: |
-          docker buildx build \
-            --file Dockerfile \
-            --tag dynaloo13/freebox-telegraf:v1.0 \
-            --tag dynaloo13/freebox-telegraf:${{ github.sha }} \
-            --platform linux/amd64,linux/arm64,linux/arm/v7 \
-            --push \
-            .
+      run: |
+        docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
+        docker push dynaloo13/freebox-telegraf:v1.0.0
 
 
 
