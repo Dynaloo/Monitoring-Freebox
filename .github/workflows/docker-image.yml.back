@@ -1,0 +1,41 @@
+name: Docker Image Freebox
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    name: build docker image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: open the docker socket
+      run: sudo chmod 666 /var/run/docker.sock
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Build Docker freebox
+      run: docker build . -t dynaloo13/freebox-telegraf:v1.0.0
+    - name: publish docker hub
+      run: |
+        docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
+        docker push dynaloo13/freebox-telegraf:v1.0.0
+
+
+
+
+#    - name: Build Docker freebox
+#      run: docker build . -t dynaloo13/freebox-telegraf:v1.0.0
+#    - name: publish docker hub
+#      run: |
+#        docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
+#        docker push dynaloo13/freebox-telegraf:v1.0.0
