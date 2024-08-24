@@ -2,10 +2,11 @@ name: Docker Push README
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
     paths:
       - 'README.md'
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
