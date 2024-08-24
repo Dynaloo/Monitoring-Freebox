@@ -1,0 +1,17 @@
+kind: pipeline
+name: default
+
+steps:
+- name: docker
+  image: thegeeklab/drone-docker-buildx:23
+  privileged: true
+  settings:
+    username: dynaloo
+    password: 
+      from_secret: ${{ secrets.DOCKER }}
+    repo: dynaloo13/freebox-telegraf
+    tags: latest
+    platforms: 
+      - linux/amd64
+      - linux/arm64
+      - linux/arm/v7
