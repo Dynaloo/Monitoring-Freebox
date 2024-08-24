@@ -7,7 +7,7 @@ push:
     paths:
       - 'Dockerfile'
       - 'entrypoint.sh'
-      - '.gitea/workflows/docker-build.yml'
+      - '.gitea/workflows/docker-image.yml'
       - 'telegraf.conf'
 
 jobs:
