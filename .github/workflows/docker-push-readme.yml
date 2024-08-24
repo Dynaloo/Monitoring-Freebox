@@ -18,10 +18,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: push README to Dockerhub
-        uses: christian-korneck/update-container-description-action@v4
+        uses: christian-korneck/update-container-description-action@v1
         env:
-          DOCKER_USER: dynaloo13
-          DOCKER_PASS: ${{ secrets.DOCKERHUB }}
+          docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
         with:
           destination_container_repo: dynaloo13/freebox-telegraf
           provider: dockerhub
