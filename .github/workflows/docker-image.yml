@@ -1,9 +1,7 @@
 name: Docker Build
 
 push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  branches: [ "main" ]
     paths:
       - 'Dockerfile'
       - 'entrypoint.sh'
