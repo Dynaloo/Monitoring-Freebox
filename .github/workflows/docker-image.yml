@@ -38,7 +38,7 @@ jobs:
           docker buildx build \
             --file Dockerfile \
             --tag dynaloo13/freebox-telegraf:v.1.0.1 \
-            --tag uzurka/freebox-telegraf:${{ github.sha }} \
+            --tag dynaloo13/freebox-telegraf:${{ github.sha }} \
             --platform linux/amd64,linux/arm64,linux/arm/v7 \
             --push \
             .
