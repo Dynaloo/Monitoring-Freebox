@@ -6,7 +6,6 @@ on:
     paths:
       - 'Dockerfile'
       - 'entrypoint.sh'
-      - '.gitea/workflows/docker-build.yml'
       - 'telegraf.conf'
   pull_request:
     branches: [ "main" ]
