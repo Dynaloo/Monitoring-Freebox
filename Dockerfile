@@ -31,7 +31,7 @@
 #FROM telegraf:1.29.2
 FROM telegraf:1.31.2
 
- Install required packages
+# Install required packages
 RUN apt-get update \""
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
