@@ -32,7 +32,7 @@
 FROM telegraf:1.31.2
 
 # Install required packages
-RUN apt-get update \""
+RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
     apt-transport-https \
