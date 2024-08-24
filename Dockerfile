@@ -2,7 +2,7 @@
 
 ##------- telegraf:1.27.1 testé OK -------##
 
-FROM telegraf:1.27.1  # version du [2023-06-21]
+FROM telegraf:1.27.1
 
 # Install required packages
 RUN apt-get update \
