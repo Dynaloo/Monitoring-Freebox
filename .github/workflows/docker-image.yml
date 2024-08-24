@@ -1,12 +1,16 @@
 name: Docker Build
 
-push:
-  branches: [ "main" ]
-    paths:
-      - 'Dockerfile'
-      - 'entrypoint.sh'
-      - '.gitea/workflows/docker-image.yml'
-      - 'telegraf.conf'
+
+on
+  push:
+    branches: [ "main" ]
+      paths:
+        - 'Dockerfile'
+        - 'entrypoint.sh'
+        - '.gitea/workflows/docker-image.yml'
+        - 'telegraf.conf'
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
