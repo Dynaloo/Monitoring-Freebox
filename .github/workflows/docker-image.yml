@@ -16,8 +16,8 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4
     - name: Build Docker freebox
-      run: docker build . -t dynaloo13/freebox-telegraf:v1.0.1
+      run: docker build . -t dynaloo13/freebox-telegraf:v1.0.0
     - name: publish docker hub
       run: |
         docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
-        docker push dynaloo13/freebox-telegraf:v1.0.1
+        docker push dynaloo13/freebox-telegraf:v1.0.0
