@@ -13,10 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: publish
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: Build Docker freebox
+      run: docker build . -t dynaloo13/freebox-telegraf:v1.0.1
+    - name: publish docker hub
       run: |
         docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
         docker push dynaloo13/freebox-telegraf:v1.0.1
