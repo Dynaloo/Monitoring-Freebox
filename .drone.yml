@@ -8,7 +8,7 @@ steps:
   settings:
     username: dynaloo
     password: 
-      from_secret: ${{ secrets.DOCKER }}
+      from_secret: ${{ secrets.DOCKERHUB }}
     repo: dynaloo13/freebox-telegraf
     tags: latest
     platforms: 
