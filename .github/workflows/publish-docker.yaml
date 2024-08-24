@@ -1,18 +1,43 @@
-name: Publish freebox image
+name: Docker Build
 
 on:
-  [workflow_dispatch]
+  push:
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+      - 'telegraf.conf'
 
 jobs:
-  publish_image:
+  build:
+    name: Build Docker image
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: build
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: open the docker socket
+        run: sudo chmod 666 /var/run/docker.sock
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: dynaloo13
+          password: ${{ secrets.DOCKER }}
+
+      - name: Build Docker image
         run: |
-          docker build . -t dynaloo13/freebox-telegraf:v.1.0
-      - name: publish
-        run: |
-          docker login -u dynaloo13 -p ${{ secrets.DOCKERHUB }}
-          docker push dynaloo13/freebox-telegraf:v.1.0
+          docker buildx build \
+            --file Dockerfile \
+            --tag dynaloo13/freebox-telegraf:latest \
+            --platform linux/amd64,linux/arm64,linux/arm/v7 \
+            --push \
+            .          
