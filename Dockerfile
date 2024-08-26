@@ -22,7 +22,7 @@ RUN pip3 install requests --break-system-packages \
     && rm /entrypoint.sh
 
 
-ADD --chmod=1755 entrypoint.sh /
+ADD entrypoint.sh /
 ADD freebox-monit.py /usr/local/py/
 ADD telegraf.conf /etc/telegraf/
 
