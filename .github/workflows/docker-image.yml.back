@@ -1,4 +1,4 @@
-name: Docker Build
+name: Docker Build/push image Freebox
 
 on:
 #  push:
@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.USER_DOCKER_HUB }}
           password: ${{ secrets.DOCKERHUB }}
 
-      - name: Build Docker image
+      - name: Build and Push Docker image
         run: |
           docker buildx build \
             --file Dockerfile \
