@@ -6,7 +6,7 @@ steps:
   image: thegeeklab/drone-docker-buildx:23
   privileged: true
   settings:
-    username: dynaloo
+    username: dynaloo13
     password: 
       from_secret: ${{ secrets.DOCKERHUB }}
     repo: dynaloo13/freebox-telegraf
