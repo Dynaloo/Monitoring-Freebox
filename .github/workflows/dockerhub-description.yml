@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Docker Hub Description
-      uses: dynaloo13/freebox-telegraf/dockerhub-description@v4
+      uses: dynaloo13/freebox-telegraf@v4
       with:
         username: ${{ secrets.USER_DOCKER_HUB }}
         password: ${{ secrets.DOCKER_HUB }}
