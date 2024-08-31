@@ -1,18 +1,19 @@
 name: Docker Build/push image Freebox
 
 on:
-#  push:
-#    branches:
-#      - main
-#    paths:
-#      - 'Dockerfile'
-#      - 'entrypoint.sh'
-#      - '.gitea/workflows/docker-image.yml'
-#      - 'telegraf.conf'
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+      - '.github/workflows/docker-image.yml'
+      - 'telegraf.conf'
+      - 'freebox-monit.py'
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
   build:
