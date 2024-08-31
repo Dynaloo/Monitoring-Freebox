@@ -1,28 +1,23 @@
-name: Docker Push README
-
+name: Update Docker Hub Description
 on:
   push:
     branches:
       - main
     paths:
-      - 'README.md'
-
+      - README.md
+      - .github/workflows/dockerhub-puskrm.yml
 jobs:
-  build:
-    name: Docker Push README
+  dockerHubDescription:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: push README to Dockerhub
-        uses: christian-korneck/update-container-description-action@v1
-        env:
-          DOCKER_USER: ${{ secrets.USER_DOCKER_HUB }}
-          DOCKER_PASS: ${{ secrets.DOCKER_HUB }}
-        with:
-          destination_container_repo: dynaloo13/freebox-telegraf
-          provider: dockerhub
-          short_description: 'A Telegraf exporter for the french ISP routers Freebox'
-          readme_file: 'README.md'
+    - name: Docker Hub Description
+      uses: peter-evans/dockerhub-description@v4
+      with:
+        username: ${{ secrets.USER_DOCKER_HUB }}
+        password: ${{ secrets.DOCKER_HUB }}
+        repository: dynaloo13/dockerhub-description
+        short-description: Telegraf pour serveur Freebox
+        enable-url-completion: true
