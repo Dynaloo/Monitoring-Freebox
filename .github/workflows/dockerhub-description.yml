@@ -19,6 +19,6 @@ jobs:
       with:
         username: ${{ secrets.USER_DOCKER_HUB }}
         password: ${{ secrets.DOCKERHUB }}
-        repository: dynaloo13/dockerhub-description
+        repository: dynaloo13/freebox-telegraf
         short-description: Telegraf pour serbeur Freebox
         enable-url-completion: true
