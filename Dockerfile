@@ -20,9 +20,9 @@ RUN apt-get update \
     && pip install unidecode \
     && rm /entrypoint.sh
 
-ADD --chmod=1755 entrypoint.sh /
-ADD freebox-monit.py /usr/local/py/
-ADD telegraf.conf /etc/telegraf/
+COPY --chmod=1755 entrypoint.sh /
+COPY freebox-monit.py /usr/local/py/
+COPY telegraf.conf /etc/telegraf/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
