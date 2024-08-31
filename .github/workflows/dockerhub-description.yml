@@ -25,5 +25,5 @@ jobs:
         with:
           destination_container_repo: dynaloo13/freebox-telegraf
           provider: dockerhub
-          short_description: 'Telegraf exporter le routeur ISP Français Freebox'
+          short_description: 'Telegraf - Monitoring du routeur Français Freebox (en cours de debug)'
           readme_file: 'README.md'
