@@ -10,6 +10,7 @@ on:
       - '.github/workflows/docker-image.yml'
       - 'telegraf.conf'
       - 'freebox-monit.py'
+      - '.drone.yml'
 #  push:
 #    branches: [ "main" ]
 #  pull_request:
@@ -43,8 +44,8 @@ jobs:
         run: |
           docker buildx build \
             --file Dockerfile \
-            --tag dynaloo13/freebox-telegraf:latest \
-            --tag dynaloo13/freebox-telegraf:${{ github.sha }} \
+            --tag ${{ secrets.USER_DOCKER_HUB }}/freebox-telegraf:latest \
+            --tag ${{ secrets.USER_DOCKER_HUB }}/freebox-telegraf:${{ github.sha }} \
             --platform linux/amd64,linux/arm64,linux/arm/v7 \
             --push \
             . 
