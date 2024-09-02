@@ -19,9 +19,8 @@ RUN apt-get update \
     && python3 -m pip install requests \
     && pip install unidecode \
     && rm /entrypoint.sh
-
-ADD /entrypoint.sh /    
-#ADD --chmod=1755 entrypoint.sh /
+    
+ADD --chmod=1755 entrypoint.sh /
 ADD freebox-monit.py /usr/local/py/
 ADD telegraf.conf /etc/telegraf/
 
