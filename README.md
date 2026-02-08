@@ -6,18 +6,12 @@
 
 Install Debian 12 in a Proxmox (create new LXC container).
 
-	hostname : telegraf
-	
+	hostname : influxdb_v2
 	Memory : 512 MIB
-	
 	Swap : 512 MIB
-	
 	Core : 1
-	
 	Unprivileged container : yes (par defaut)
-	
 	nesting : yes (par defaut)
-	
 	disk size : 8 GB
 
 Then, connect via SSH as root.
@@ -91,18 +85,12 @@ Login: https://ip_influxdb_v2:8086
 
 Install Debian 12 in a Proxmox (create new LXC container).
 
-	hostname : telegraf
-	
+	hostname : grafana
 	Memory : 512 MIB
-	
 	Swap : 512 MIB
-	
 	Core : 1
-	
 	Unprivileged container : yes (par defaut)
-	
 	nesting : yes (par defaut)
-	
 	disk size : 8 GB
 
 Then, connect via SSH as root.
@@ -238,8 +226,8 @@ Install Telegraf:
 	
     Copy the 'freebox.py' file to the /usr/local/py/ directory (using filezila or winscp)
 	
-		cd /usr/local/py
-		chown root:root freebox.py && chmod 777 freebox.py
+	cd /usr/local/py
+	chown root:root freebox.py && chmod 777 freebox.py
 
 
 ***Modify Telegraf file:***
