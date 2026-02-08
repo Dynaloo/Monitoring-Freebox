@@ -221,13 +221,14 @@ Next, install Telegraf.
 	
 - Copy the 'freebox.py' file to the /usr/local/py/ directory (using filezila or winscp)
 
-	Go to directory:
 
-		cd /usr/local/py
+Go to directory:
 
-	Change the file permissions
+	cd /usr/local/py
 
-		chown root:root freebox.py && chmod 777 freebox.py
+Change the file permissions
+
+	chown root:root freebox.py && chmod 777 freebox.py
 
 
 ***Modify Telegraf file:***
