@@ -58,21 +58,21 @@ Login: https://ip_influxdb_v2:8086
 
 	Complete the form on the first launch
 	
-		Enter Username  #for your initial user
+			Enter Username  #for your initial user
 		
-		Enter Password and Confirm Password  #for your user.
+			Enter Password and Confirm Password  #for your user.
 		
-		Enter your initial Organization Name  #par ex.: monitoring
+			Enter your initial Organization Name  #par ex.: monitoring
 		
-		Enter your initial Bucket Name  #par ex.: freebox
+			Enter your initial Bucket Name  #par ex.: freebox
 		
 	Click Continue.
 	
-		Copy the provided admin API token and store it securely.
+			Copy the provided admin API token and store it securely.
 		
-    	Or, create a specific token for the "freebox" bucket.
+    		Or, create a specific token for the "freebox" bucket.
 		
-	Remember to adjust the retention period (e.g., 3 days for the Freebox bucket)
+			Remember to adjust the retention period (e.g., 3 days for the Freebox bucket)
 
 **INSTALL GRAFANA:**
 
