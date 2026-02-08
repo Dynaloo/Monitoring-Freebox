@@ -237,7 +237,7 @@ Change the file permissions
 
 
 [[outputs.influxdb_v2]]
-  urls = ["http://**{\color{red}Your \space IP \space InfluxDB2}**:8086"]  $${\color{red}Your \space IP \space InfluxDB2}$$
+  urls = ["http://**${\textsf{\color{lightgreen}Your IP adress InfluxDBv2}}$**:8086"]  ${\textsf{\color{lightgreen}Your IP adress InfluxDBv2}}$
   
   token = "Your_Token_InfluxDB2"
   
