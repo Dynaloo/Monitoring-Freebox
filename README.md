@@ -148,6 +148,10 @@ Then connect: http://ip_grafana:3000
 
 - Pw : **admin** # by default on first launch
 
+<ins>Freebox monitoring dashboard template for Grafana</ins>
+
+- Dashboard Freebox POP - InfluxDB v2.json
+
 ---
 **INSTALL TELEGRAF:**
 
