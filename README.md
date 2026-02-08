@@ -236,9 +236,10 @@ Change the file permissions
 	Edit the file /etc/telegraf/telegraf.d/freebox.conf and modify the red zone
 
 {\color{red}Bienvenue}
+$\color{green}{test}$
 
 [[outputs.influxdb_v2]]
-  urls = ["http://$${\color{red}Your_IP_InfluxDB2}$$:8086"]
+  urls = ["http://$\color{red}{Your_IP_InfluxDB2}$:8086"]
   
   token = "Your_Token_InfluxDB2"
   
