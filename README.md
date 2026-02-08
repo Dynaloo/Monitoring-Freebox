@@ -1,3 +1,5 @@
+MONITORING FREEBOX (In PROXMOX LXC Container)
+
 INSTALL INFLUXDB_V2:
 Firstly
 Install Debian 12 in a Proxmox (create new LXC container).
