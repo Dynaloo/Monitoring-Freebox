@@ -233,35 +233,25 @@ Change the file permissions
 
 ***Modify Telegraf file:***
 	
-	Edit the file /etc/telegraf/telegraf.d/freebox.conf
-	For Influxdb v1
-    	[[outputs.influxdb]]
-        urls = ["http://ip_server_influx_v1:8086"]
-        database = "nom de la database"
-        database_tag = ""
-        skip_database_creation = true
-        retention_policy = ""
-        write_consistency = "any"
-        timeout = "30s"
-        username = "nom utilisateur database"
-        password = "pw utilisateur database"
+	Edit the file /etc/telegraf/telegraf.d/freebox.conf and modify the red zone
 
-	For Influxdb v2
-    	[[outputs.influxdb_v2]]
-        urls = ["http://ip_server_influx_v2:8086"]
-        token = "copy the InfluxDB v2 admin token or specific bucket token "
-        organization = "organization_name influxDBv2"
-        bucket = "Bucket_name created in InfluxDBv2"
+[[outputs.influxdb_v2]]
+  urls = ["http://Your_IP_InfluxDB2:8086"]
+  token = "Your_Token_InfluxDB2"
+  organization = "Organization_Name_in_your_InfluxDB2 "
+  bucket = "freebox" # Bucket_name_created_in_your_InfluxDB2 - Why not "freebox"
 
+  commands = [
+    "python3 /usr/local/py/freebox_061.py -SPHDIWXYZ4" # Or "freebox_070.py" which is latest version
+]
 
-		systemctl start telegraf  # to start Telegraf
-		systemctl enable telegraf  # to make it persistent on restart
-		systemctl restart telegraf  # to restart Telegraf
+- systemctl start telegraf  # to start Telegraf
+- systemctl enable telegraf  # to make it persistent on restart
+- systemctl restart telegraf  # to restart Telegraf
     
-		systemctl stop telegraf  # to stop Telegraf
+- systemctl stop telegraf  # to stop Telegraf
 
-
-Lancer l'enregistrement de la Freebox :
+Start recording from the Freebox:
 
 python3 freebox.py -r  (Here, you will need to validate the API on the box.)
                    -h  (to see the options)
