@@ -235,7 +235,7 @@ Change the file permissions
 	
 	Edit the file /etc/telegraf/telegraf.d/freebox.conf and modify the red zone
 
-${\color{red}Bienvenue Sur Stackoverflow}$
+{\color{red}Bienvenue}
 
 [[outputs.influxdb_v2]]
   urls = ["http://$${\color{red}Your_IP_InfluxDB2}$$:8086"]
