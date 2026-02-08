@@ -118,31 +118,32 @@ update the list of available packages
 
 	apt-get update
 	
-Install Grafana OSS or install Grafana Enterprise
+Install Grafana OSS
 
 	apt-get install grafana
 	
-or
+Or, for businesses, if you have subscribed,
 
 	apt-get install grafana-enterprise
 
-Démarrage des services
+Start of services
 
 	systemctl daemon-reload
 	systemctl start grafana-server
 	
-Persistance au démarrage
+Persistence at startup
 
 	systemctl enable grafana-server.service
 	
-Vérification du status
+Status check
 
 	systemctl status grafana-server
 
 Then connect: http://ip_grafana:3000
 
-	Id : admin #(default on first launch)
-	Pw : admin #(default on first launch)
+- Id : **admin** # by default on first launch
+
+- Pw : **admin** # by default on first launch
 
 **INSTALL TELEGRAF:**
 
@@ -162,7 +163,7 @@ Then, connect via SSH as root.
 
 Update Debian:
 
-	apt-get update & apt-get upgrade -y
+	apt-get update && apt-get upgrade -y
 
 Check your Python version (Python is normally installed with Debian)
 
@@ -174,8 +175,7 @@ If Python is not installed
 	
 Next, install Pip3
 
-	apt update
-	apt install python3-pip -y
+	apt update && apt install python3-pip -y
 	
 Check the Pip3 version
 
@@ -209,21 +209,20 @@ Next, install Telegraf.
 	&& echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.gpg] https://repos.influxdata.com/debian stable main' \
 	| tee /etc/apt/sources.list.d/influxdata.list
 
-Install Telegraf:
-
 	apt-get update && apt-get install telegraf
 
 **Configuration:**
 
 ***Récupération du script:***
 
-	Copy the 'telegraf.conf' file to the /etc/telegraf/ directory (using filezila or winscp)
+- Copy the 'telegraf.conf' file to the /etc/telegraf/ directory (using filezila or winscp)
 	
-    Copy the contents of the 'telegraf.d' directory to the /etc/telegraf/telegraf.d/ directory (using filezila or winscp)
+- Copy the contents of the 'telegraf.d' directory to the /etc/telegraf/telegraf.d/ directory (using filezila or winscp)
 	
-    Copy the 'freebox.py' file to the /usr/local/py/ directory (using filezila or winscp)
+- Copy the 'freebox.py' file to the /usr/local/py/ directory (using filezila or winscp)
 	
 	cd /usr/local/py
+
 	chown root:root freebox.py && chmod 777 freebox.py
 
 
@@ -258,7 +257,6 @@ Install Telegraf:
 
 
 Lancer l'enregistrement de la Freebox :
---------------------------------------
 
 python3 freebox.py -r  (Here, you will need to validate the API on the box.)
                    -h  (to see the options)
