@@ -5,7 +5,7 @@
 
 ***Firstly:***
 
-Install Debian 12 in a Proxmox (create new LXC container).
+Install <ins>Debian 12</ins> in Proxmox (create new LXC container).
 
 	hostname : influxdb_v2
 	Memory : 512 MIB
@@ -79,7 +79,7 @@ Click Continue.
 
 ***Firstly:***
 
-Install Debian 12 in a Proxmox (create new LXC container).
+Install <ins>Debian 12</ins> in Proxmox (create new LXC container).
 
 	hostname : grafana
 	Memory : 512 MIB
@@ -153,7 +153,7 @@ Then connect: http://ip_grafana:3000
 
 ***Firstly:***
 
-Install Debian 12 in a Proxmox (create new LXC container).
+Install <ins>Debian 12</ins> in Proxmox (create new LXC container).
 
   	hostname : telegraf
 	Memory : 512 MIB
@@ -260,15 +260,15 @@ To start Telegraf:
 
 	systemctl start telegraf:
 
-To make it persistent on restart
+To make it persistent on restart:
 
 	systemctl enable telegraf
 	
-To restart Telegraf (For info)
+To restart Telegraf *(For info)*:
 
 	systemctl restart telegraf
 
-To stop Telegraf (For info):
+To stop Telegraf *(For info)*:
 
 	systemctl stop telegraf
 
@@ -276,7 +276,8 @@ Start Freebox registration from the Freebox:
 
 	python3 freebox.py -r
 
-**Here, you will need to validate the API on the box**.
+> [!IMPORTANT]
+>	**Here, you will need to validate the API on the box**.
 
 Explanation of the options
 - python3 freebox.py -**r**  (Freebox registration)
