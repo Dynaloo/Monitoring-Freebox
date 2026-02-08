@@ -69,8 +69,10 @@ Complete the form on the first launch
 Click Continue.
 
 - Copy the provided admin API token and store it securely.
+
   Or,
-- create a specific token for the "freebox" bucket.
+  
+- Create and copy a specific token for the "freebox" bucket.
 
 - Remember to adjust the retention period (e.g., 3 days for the Freebox bucket)
 
