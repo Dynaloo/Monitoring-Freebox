@@ -238,9 +238,12 @@ Change the file permissions
 $${\color{red}Bienvenue \space \color{lightblue}Sur \space \color{orange}Stackoverflow}$$
 
 [[outputs.influxdb_v2]]
-  urls = ["http://Your_IP_InfluxDB2:8086"]
-  token = "<p style='color:red'>Your_Token_InfluxDB2</p>"
-  organization = "Organization_Name_in_your_InfluxDB2 "
+  urls = ["http://$${\color{red}Your_IP_InfluxDB2}$$:8086"]
+  
+  token = "Your_Token_InfluxDB2"
+  
+  organization = "Organization_Name_in_your_InfluxDB2"
+  
   bucket = "freebox" # Bucket_name_created_in_your_InfluxDB2 - Why not "freebox"
 
   commands = [
