@@ -1,36 +1,67 @@
-MONITORING FREEBOX (In PROXMOX LXC Container)
+# MONITORING FREEBOX (In PROXMOX LXC Container)
 
-INSTALL INFLUXDB_V2:
-Firstly
+**INSTALL INFLUXDB_V2:**
+
+***Firstly:***
+
 Install Debian 12 in a Proxmox (create new LXC container).
+
+	hostname : telegraf
+	
+	Memory : 512 MIB
+	
+	Swap : 512 MIB
+	
+	Core : 1
+	
+	Unprivileged container : yes (par defaut)
+	
+	nesting : yes (par defaut)
+	
+	disk size : 8 GB
 
 Then, connect via SSH as root.
 
 Update Debian:
+
 	apt-get update & apt-get upgrade -y
 
 Install Curl (which is not installed by default in Debian)
+
   apt install curl
 
-secondly:
+***secondly:***
+
 Install influxdb_v2
+
 	curl --silent --location -O \
+	
 	https://repos.influxdata.com/influxdata-archive.key
+	
 	echo "943666881a1b8d9b849b74caebf02d3465d6beb716510d86a39f6c8e8dac7515  influxdata-archive.key" \
+	
 	| sha256sum --check - && cat influxdata-archive.key \
+	
 	| gpg --dearmor \
+	
 	| tee /etc/apt/trusted.gpg.d/influxdata-archive.gpg > /dev/null \
+	
 	&& echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.gpg] https://repos.influxdata.com/debian stable main' \
+	
 	| tee /etc/apt/sources.list.d/influxdata.list
 
 	apt-get update && apt-get install influxdb2
 
 Start of services
+
 	systemctl start influxdb
 Persistence at startup
+
 	systemctl enable influxdb
+	
 Status check
 	systemctl status influxdb
+	
 
 Login: https://ip_influxdb_v2:8086
 
