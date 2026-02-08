@@ -224,6 +224,8 @@ Next, install Telegraf.
 	&& echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.gpg] https://repos.influxdata.com/debian stable main' \
 	| tee /etc/apt/sources.list.d/influxdata.list
 
+Install Telegraf:
+
 	apt-get update && apt-get install telegraf
 
 **Configuration:**
