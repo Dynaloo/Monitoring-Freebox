@@ -247,9 +247,9 @@ Change the file permissions:
 > [!TIP]
 > [[outputs.influxdb_v2]]<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;urls = ["http://**Your_influxDBv2_IP**:8086"]  
-> &nbsp;&nbsp;&nbsp;&nbsp;token = "Your_influxDB2_Token"  
-> &nbsp;&nbsp;&nbsp;&nbsp;organization = "Your_influxDB2v2_organization"  
-> &nbsp;&nbsp;&nbsp;&nbsp;bucket = "Your_influxDB2v2_Bucket_Name" _# Bucket_name_created_in_your_InfluxDB2_  
+> &nbsp;&nbsp;&nbsp;&nbsp;token = "**Your_influxDB2_Token**"  
+> &nbsp;&nbsp;&nbsp;&nbsp;organization = "**Your_influxDB2v2_organization**"  
+> &nbsp;&nbsp;&nbsp;&nbsp;bucket = "**Your_influxDB2v2_Bucket_Name**"  
 >   
 > [[inputs.exec]]<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;commands = [  
