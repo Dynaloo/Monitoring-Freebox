@@ -245,20 +245,20 @@ Change the file permissions:
 	nano /etc/telegraf/telegraf.d/freebox.conf
 
 > [!TIP]
+> ```toml
+> [[outputs.influxdb_v2]]
+>   urls = ["http://Your_influxDBv2_IP:8086"]
+>   token = "Your_influxDB2_Token"
+>   organization = "Your_influxDB2v2_organization"
+>   bucket = "Your_influxDB2v2_Bucket_Name}" # Bucket_name_created_in_your_InfluxDB2
 > 
->	[[outputs.influxdb_v2]]
-> 
->	urls = ["http://**$\color{#FF0000}{Your \space influxDBv2 \space IP \space address}$**:8086"]
-> 
->	token = "**$\color{#FF0000}{Your \space influxDB2 \space Token}$**"
-> 
->	organization = "**$\color{#FF0000}{Your \space influxDB2v2 \space organization \space Name}$**"
-> 
->	bucket = ""**$\color{#FF0000}{Your \space influxDB2v2 \space Bucket \space Name}$**" # Bucket_name_created_in_your_InfluxDB2 - Why not "freebox}"
-> 
->	commands = [
->		"python3 /usr/local/py/**freebox_061.py** -SPHDIWXYZ4" # Or "freebox_070.py" which is latest version
->		]
+> [[inputs.exec]]
+>   commands = [
+>       "python3 /usr/local/py/freebox_061.py -SPHDIWXYZ4"
+>   ]
+>
+> # Or "freebox_070.py" which is latest version
+> ```
 
 To start Telegraf:
 
