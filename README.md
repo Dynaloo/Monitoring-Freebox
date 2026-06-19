@@ -240,7 +240,7 @@ Change the file permissions:
 	chown root:root freebox.py && chmod 777 freebox.py
 
 
-***Edit & Modify "freebox.conf":*** (red texte)
+***Edit & Modify "freebox.conf":*** (bold text)
 	
 	nano /etc/telegraf/telegraf.d/freebox.conf
 
@@ -257,6 +257,8 @@ Change the file permissions:
 > &nbsp;&nbsp;&nbsp;&nbsp;]  
 >   
 > _# Or "**070**.py" which is latest version_
+>
+> <ins>To save changes: "Ctrl+O" then "Enter" and to exit the nano editor: "Ctrl+X"</ins>
 
 To start Telegraf:
 
