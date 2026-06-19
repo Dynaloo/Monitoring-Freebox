@@ -150,7 +150,7 @@ Then connect: http://ip_grafana:3000
 
 <ins>Freebox monitoring dashboard template for Grafana</ins>
 
-- Dashboard Freebox POP - InfluxDB v2.json
+- Dashboard Freebox POP - Grafana.json
 
 ---
 **INSTALL TELEGRAF:**
